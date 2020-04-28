@@ -7,6 +7,21 @@ public class AuthorTest {
     public static void main(String[] args) {
 
         try {
+            System.out.println("Testando a exceção de nome nulo para autor");
+            new Author(null, "");
+        } catch( IllegalArgumentException error){
+            System.out.println(error.getMessage() + "\n");
+        }
+
+        try {
+            System.out.println("Testando a exceção de email nulo para autor");
+            new Author("Geovani", null);
+            
+        } catch( IllegalArgumentException error){
+            System.out.println(error.getMessage() + "\n");
+        }
+
+        try {
             System.out.println("Testando exceção de nome vazio");
             new Author("", "");
 
