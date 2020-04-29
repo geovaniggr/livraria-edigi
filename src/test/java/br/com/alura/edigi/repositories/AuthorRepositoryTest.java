@@ -1,4 +1,4 @@
-package br.com.alura.edigi.repository;
+package br.com.alura.edigi.repositories;
 
 import br.com.alura.edigi.model.Author;
 
