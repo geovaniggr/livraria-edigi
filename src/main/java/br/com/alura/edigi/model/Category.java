@@ -14,7 +14,7 @@ public class Category {
 
     private void setName(String name) {
         if(name == null || name.isEmpty())
-            throw new IllegalArgumentException("O name da categoria não pode ser vazio");
+            throw new IllegalArgumentException("O nome da categoria não pode ser vazio");
 
         this.name = name;
     }
