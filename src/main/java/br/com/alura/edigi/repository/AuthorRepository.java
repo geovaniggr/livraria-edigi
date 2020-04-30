@@ -1,4 +1,4 @@
-package br.com.alura.edigi.repositories;
+package br.com.alura.edigi.repository;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,7 @@
-package br.com.alura.edigi.repositories;
+package br.com.alura.edigi.respository;
 
 import br.com.alura.edigi.model.Author;
+import br.com.alura.edigi.repository.AuthorRepository;
 
 public class AuthorRepositoryTest {
     public static void main(String[] args) {
