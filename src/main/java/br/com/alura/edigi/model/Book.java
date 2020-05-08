@@ -54,7 +54,7 @@ public class Book {
         if (isbn == null || isbn.isEmpty())
             throw new IllegalArgumentException("O ISBN não pode ser vazio");
 
-        if (!isbn.matches("^978\\-\\d{2}\\-\\d{4}\\-\\d{2}\\-\\d$"))
+        if (!isbn.matches("^978\\-\\d{2}\\-\\d{5}\\-\\d{2}\\-\\d$"))
             throw new IllegalArgumentException("O formato do ISBN é invalido");
 
         this.isbn = isbn;

@@ -12,7 +12,7 @@ public class BookRepositoryTest {
     public static void main(String[] args) {
         Author author = new Author("Geovani", "geovani@alura.com.br");
         Category category = new Category("Programação");
-        Book book = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-1234-12-1", new BigDecimal(50), 50,
+        Book book = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-32334-12-1", new BigDecimal(50), 50,
                 author, category);
         BookRepository bookRepository = new BookRepository();
 

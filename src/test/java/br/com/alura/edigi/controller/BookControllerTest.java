@@ -22,9 +22,9 @@ public class BookControllerTest {
         categoryRepository.save(category);
         authorRepository.save(author);
     
-        Book book = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-1234-12-1", new BigDecimal(50), 50, author, category);
-        Book bookWithoutAuthor = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-1234-12-1", new BigDecimal(50), 50, new Author("jose", "jose@alura.com"),category);
-        Book bookWithoutCategory = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-1234-12-1", new BigDecimal(50), 50, author, new Category("Não Cadastrado"));
+        Book book = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-12134-12-1", new BigDecimal(50), 50, author, category);
+        Book bookWithoutAuthor = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-12314-12-1", new BigDecimal(50), 50, new Author("jose", "jose@alura.com"),category);
+        Book bookWithoutCategory = new Book("Java8", "Um livro de Java", "1. O que é Java", "978-12-12334-12-1", new BigDecimal(50), 50, author, new Category("Não Cadastrado"));
         
         try {
             System.out.println("Testando a execção de livro inserido com categoria inexistente");
@@ -34,7 +34,7 @@ public class BookControllerTest {
         }
         
         try {
-            System.out.println("Testando a execção de autor inexistente");
+            System.out.println("Testando a execção de livro inserido com autor inexistente");
             bookController.store(bookWithoutAuthor);
         } catch (IllegalArgumentException error){
             System.out.println(error.getMessage() + "\n");
