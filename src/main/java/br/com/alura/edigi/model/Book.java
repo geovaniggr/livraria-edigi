@@ -37,8 +37,8 @@ public class Book {
         if (synopsis == null || synopsis.isEmpty())
             throw new IllegalArgumentException("O resumo não pode ser vazio");
 
-        if (synopsis.length() > 500)
-            throw new IllegalArgumentException("O resumo não pode ter mais de 500 caracteres");
+        if (synopsis.length() < 500)
+            throw new IllegalArgumentException("O resumo não pode ter menor de 500 caracteres");
 
         this.synopsis = synopsis;
     }
@@ -69,19 +69,19 @@ public class Book {
 
     private void setNumberOfPages(Integer numberOfPages) {
         if ( numberOfPages == null || numberOfPages.intValue() <= 0)
-            throw new IllegalArgumentException("O número de páginas não pode ser menor que 0 ");
+            throw new IllegalArgumentException("O número de páginas deve ser maior que 0");
 
         this.numberOfPages = numberOfPages;
     }
 
-    public void setAuthor(Author author) {
+    private void setAuthor(Author author) {
         if (author == null)
             throw new IllegalArgumentException("O autor não pode ser nulo");
 
         this.author = author;
     }
 
-    public void setCategory(Category category) {
+    private void setCategory(Category category) {
         if (category == null)
             throw new IllegalArgumentException("A categoria não pode ser vazia");
 
@@ -110,7 +110,7 @@ public class Book {
         if (getClass() != obj.getClass()) return false;
 
         Book other = (Book) obj;
-        return this.title.equals(other.title);
+        return this.title.equals(other.title) && this.isbn.equals(other.isbn);
     }
 
     @Override
