@@ -31,6 +31,10 @@ public class Author {
         this.email = email;
     }
 
+    public String getName(){
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Author [nome=" + name + ", email=" + email + "]";
