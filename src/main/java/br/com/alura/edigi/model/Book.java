@@ -128,7 +128,7 @@ public class Book {
 
     public String toView() {
         return String.format(
-                "-----------------\nTitulo: %s \n Autor: %s\n Edicão: %s\n Preço: %f\n Número de Páginas: %d\n Resumo: %s\n Sumário: %s\n--------------\n",
-                title, author.getName(), edition, price, numberOfPages, synopsis, tableOfContents);
+                "-----------------\nTitulo: %s \n Autor: %s\n Edicão: %s\nCategoria: %s\n Preço: %f\n Número de Páginas: %d\n Resumo: %s\n Sumário: %s\n--------------\n",
+                title, author.getName(), edition, category.getName(), price, numberOfPages, synopsis, tableOfContents);
     }
 }
