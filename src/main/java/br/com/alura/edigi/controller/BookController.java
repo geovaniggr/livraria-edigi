@@ -1,6 +1,8 @@
 package br.com.alura.edigi.controller;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 import br.com.alura.edigi.model.Book;
 import br.com.alura.edigi.repository.AuthorRepository;
@@ -29,6 +31,23 @@ public class BookController {
         this.bookRepository.save(book);
 
         return String.format("Livro cadastrado com sucesso:\nAutor: %s \n%s \n%s", book.getAuthor().getName(), book, LocalDate.now());
+    }
+
+    public String findByTitle(String title){
+        
+        if( title.isEmpty() || title == null || title.length() < 2)
+            throw new IllegalArgumentException("A busca por livro deve conter pelo menos 2 caracteres");
+        
+        Optional<List<Book>> searchResult = bookRepository.findByTitle(title);
+
+        if(searchResult.isEmpty())
+            return "Nenhum livro encontrado com essse título";
+
+        StringBuilder response = new StringBuilder("");
+
+        searchResult.get().forEach( book -> response.append(book.toView()));
+
+        return response.toString();
     }
 
 

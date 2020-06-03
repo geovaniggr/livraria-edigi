@@ -38,7 +38,7 @@ public class Book {
             throw new IllegalArgumentException("O resumo não pode ser vazio");
 
         if (synopsis.length() < 500)
-            throw new IllegalArgumentException("O resumo não pode ter menor de 500 caracteres");
+            throw new IllegalArgumentException("O resumo não pode ser menor de 500 caracteres");
 
         this.synopsis = synopsis;
     }
@@ -68,7 +68,7 @@ public class Book {
     }
 
     private void setNumberOfPages(Integer numberOfPages) {
-        if ( numberOfPages == null || numberOfPages.intValue() <= 0)
+        if (numberOfPages == null || numberOfPages.intValue() <= 0)
             throw new IllegalArgumentException("O número de páginas deve ser maior que 0");
 
         this.numberOfPages = numberOfPages;
@@ -96,6 +96,10 @@ public class Book {
         return author;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -106,8 +110,10 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (getClass() != obj.getClass())
+            return false;
 
         Book other = (Book) obj;
         return this.title.equals(other.title) && this.isbn.equals(other.isbn);
@@ -115,8 +121,14 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [ category=" + category + ", edition=" + edition + ", isbn=" + isbn
-                + ", numberOfPages=" + numberOfPages + ", price=" + price + ", synopsis=" + synopsis
-                + ", tableOfContents=" + tableOfContents + ", title=" + title + "]";
+        return "Book [ category=" + category + ", edition=" + edition + ", isbn=" + isbn + ", numberOfPages="
+                + numberOfPages + ", price=" + price + ", synopsis=" + synopsis + ", tableOfContents=" + tableOfContents
+                + ", title=" + title + "]";
+    }
+
+    public String toView() {
+        return String.format(
+                "-----------------\nTitulo: %s \n Autor: %s\n Edicão: %s\nCategoria: %s\n Preço: %f\n Número de Páginas: %d\n Resumo: %s\n Sumário: %s\n--------------\n",
+                title, author.getName(), edition, category.getName(), price, numberOfPages, synopsis, tableOfContents);
     }
 }
