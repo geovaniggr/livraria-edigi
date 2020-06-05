@@ -1,6 +1,5 @@
 package br.com.alura.edigi.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ public class BookController {
         this.categoryRepository = categoryRepository;
     }
 
-    public String store(Book book ){
+    public Book store(Book book) {
         if(!categoryRepository.hasCategory(book.getCategory()))
             throw new IllegalArgumentException("Não existe categoria cadastrada com esse nome!");
        
@@ -30,10 +29,10 @@ public class BookController {
 
         this.bookRepository.save(book);
 
-        return String.format("Livro cadastrado com sucesso:\nAutor: %s \n%s \n%s", book.getAuthor().getName(), book, LocalDate.now());
+        return book;
     }
 
-    public String findByTitle(String title){
+    public List<Book> findByTitle(String title){
         
         if( title.isEmpty() || title == null || title.length() < 2)
             throw new IllegalArgumentException("A busca por livro deve conter pelo menos 2 caracteres");
@@ -41,14 +40,9 @@ public class BookController {
         Optional<List<Book>> searchResult = bookRepository.findByTitle(title);
 
         if(searchResult.isEmpty())
-            return "Nenhum livro encontrado com essse título";
+            throw new IllegalArgumentException("Nenhum livro encontrado com essse título");
 
-        StringBuilder response = new StringBuilder("");
-
-        searchResult.get().forEach( book -> response.append(book.toView()));
-
-        return response.toString();
+        return searchResult.get();
     }
-
 
 }
