@@ -8,7 +8,7 @@ import java.util.Map;
 public class Cart {
 
     private Map<Book, Integer> items = new HashMap<>();
-    private LocalDateTime creatAt;
+    private LocalDateTime createdAt;
 
     public void addItem(Book book) {
         this.items.put(book, this.items.getOrDefault(book, 0) + 1);
@@ -22,7 +22,7 @@ public class Cart {
     }
 
     public String checkout(){
-        this.creatAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
 
         return 
         "Compra Realizada com Sucesso!\n\n".concat(
