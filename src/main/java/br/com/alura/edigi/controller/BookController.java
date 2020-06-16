@@ -20,16 +20,16 @@ public class BookController {
         this.categoryRepository = categoryRepository;
     }
 
-    public Book store(Book book) {
+    public boolean store(Book book) {
         if(!categoryRepository.hasCategory(book.getCategory()))
             throw new IllegalArgumentException("Não existe categoria cadastrada com esse nome!");
        
         if(!authorRepository.hasAuthor(book.getAuthor()))
-            throw new IllegalArgumentException("Não existe autor cadastrado com esse nome!");
+            return false;
 
         this.bookRepository.save(book);
 
-        return book;
+        return true;
     }
 
     public List<Book> findByTitle(String title){

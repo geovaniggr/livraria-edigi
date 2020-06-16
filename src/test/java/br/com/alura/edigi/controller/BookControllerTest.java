@@ -12,6 +12,7 @@ import br.com.alura.edigi.repository.CategoryRepository;
 
 public class BookControllerTest {
 
+
     private static String printBooks(List<Book> books) {
         StringBuilder response = new StringBuilder("");
 
@@ -48,25 +49,29 @@ public class BookControllerTest {
 
         try {
             System.out.println("Testando a execção de livro inserido com autor inexistente");
-            bookController.store(bookWithoutAuthor);
-        } catch (IllegalArgumentException error) {
+            if(!bookController.store(bookWithoutAuthor));
+                throw new RuntimeException("Não foi possível salvar o livro");
+        } catch (Exception error) {
             System.out.println(error.getMessage() + "\n");
         }
 
         System.out.println("Testando o salvamento de um livro com dados corretos");
         bookController.store(book);
+        System.out.println(book);
         System.out.println("------------------------------------");
 
         System.out.println("Testando A Consulta de Livros");
+
+        System.out.println(
+            printBooks(bookController.findByTitle("Java"))
+        );
+
 
         try {
             bookController.findByTitle("A");
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage() + "\n");
         }
-
-        System.out.println("Pesquisando um livro com nome existente");
-        System.out.println(printBooks(bookController.findByTitle("Ja")));
 
         try {
             System.out.println("Pesquisando um livro com nome inexistente");
