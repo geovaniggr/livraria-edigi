@@ -42,8 +42,9 @@ public class BookControllerTest {
 
         try {
             System.out.println("Testando a execção de livro inserido com categoria inexistente");
-            bookController.store(bookWithoutCategory);
-        } catch (IllegalArgumentException error) {
+            if(!bookController.store(bookWithoutCategory));
+                throw new RuntimeException("Não foi possível salvar o livro por categoria inexistente");
+        } catch (RuntimeException error) {
             System.out.println(error.getMessage() + "\n");
         }
 

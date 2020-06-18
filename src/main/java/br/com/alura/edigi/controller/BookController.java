@@ -21,14 +21,10 @@ public class BookController {
     }
 
     public boolean store(Book book) {
-        if(!categoryRepository.hasCategory(book.getCategory()))
-            throw new IllegalArgumentException("Não existe categoria cadastrada com esse nome!");
-       
-        if(!authorRepository.hasAuthor(book.getAuthor()))
+        if( !categoryRepository.hasCategory(book.getCategory()) || !authorRepository.hasAuthor(book.getAuthor()))
             return false;
 
         this.bookRepository.save(book);
-
         return true;
     }
 
