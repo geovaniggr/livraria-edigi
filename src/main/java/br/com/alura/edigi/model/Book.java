@@ -100,6 +100,10 @@ public class Book {
         return title;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
