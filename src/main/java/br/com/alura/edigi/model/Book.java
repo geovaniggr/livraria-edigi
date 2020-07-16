@@ -105,14 +105,6 @@ public class Book {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + title.hashCode();
-        return result;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -120,7 +112,11 @@ public class Book {
             return false;
 
         Book other = (Book) obj;
-        return this.title.equals(other.title) && this.isbn.equals(other.isbn);
+        return this.title.equals(other.title) || this.isbn.equals(other.isbn);
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 
     @Override
@@ -135,4 +131,5 @@ public class Book {
                 "-----------------\nTitulo: %s \n Autor: %s\n Edicão: %s\nCategoria: %s\n Preço: %f\n Número de Páginas: %d\n Resumo: %s\n Sumário: %s\n--------------\n",
                 title, author.getName(), edition, category.getName(), price, numberOfPages, synopsis, tableOfContents);
     }
+
 }

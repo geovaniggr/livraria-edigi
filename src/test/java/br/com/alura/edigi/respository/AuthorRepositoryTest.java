@@ -1,30 +1,29 @@
 package br.com.alura.edigi.respository;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import br.com.alura.edigi.model.Author;
 import br.com.alura.edigi.repository.AuthorRepository;
 
 public class AuthorRepositoryTest {
-    public static void main(String[] args) {
 
-        AuthorRepository authorRepository = new AuthorRepository();
+    private AuthorRepository authorRepository = new AuthorRepository();
 
-        System.out.println("Testando o salvamento de um autor com mensagem de sucesso");
+    @Test
+    @DisplayName("Autor não existente deve ser cadastrado")
+    public void addAuthorToDatabase() {
+        Author author = new Author("Geovani", "geovani@alura.com.br");
+        this.authorRepository.save(author);
+        System.out.println("Autor Cadastrado com Sucesso!");
+        System.out.println(author);
+    }
 
-        try {
-            Author author = new Author("Geovani", "geovani@alura.com.br");
-            authorRepository.save(author);
-            System.out.println("Autor Cadastrado com Sucesso!");
-            System.out.println(author);
-
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-        }
-
-        try {
-            System.out.println("\nTestando se o autor repetido não é cadastrado");
-            authorRepository.save(new Author("Granieri", "geovani@alura.com.br"));
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-        }
+    @Test
+    @DisplayName("Autor com email já cadastrado deve lançar exceção")
+    public void addAlreadyExistsAuthor(){
+        assertThrows(IllegalArgumentException.class, () -> this.authorRepository.save(new Author("Granieri", "geovani@alura.com.br")));
     }
 }

@@ -1,23 +1,21 @@
 package br.com.alura.edigi.models;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import br.com.alura.edigi.model.Category;
 
 public class CategoryTest {
 
-    public static void main(String[] args) {
-        
-        try {
-            System.out.println("Testando a exceção de nome nulo para a categoria");
-            new Category(null);
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage() + "\n");
-        }
-
-        try {
-            System.out.println("Testando a exceção de nome vazio para a categoria");
-            new Category("");
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage() + "\n");
-        }
+    @Test
+    @DisplayName("Categoria com nome nulo ou vazio não deve ser criado")
+    public void nullNameForCategory() {
+        assertAll(
+            () -> assertThrows(IllegalArgumentException.class, () -> new Category(null), "Categoria com nome nulo foi criado"),
+            () -> assertThrows(IllegalArgumentException.class, () -> new Category(""), "Categoria com nome vazia foi criado")
+        );
     }
 }
