@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -49,7 +50,6 @@ public class BookControllerTest {
 
         categoryRepository.save(category);
         authorRepository.save(author);
-
     }
 
     @Test
@@ -68,13 +68,12 @@ public class BookControllerTest {
     @DisplayName("Livro com dados corretos deve ser salvo corretamente")
     public void insertBook() {
         Book book = new Book("Java8", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-12134-12-7", new BigDecimal(50), 50, author, category);
-        bookController.store(book);
+        assertTrue( () -> bookController.store(book));
     }
 
     @Test
     @DisplayName("Busca com menos de 2 caracters ou livro inexistente deve lançar erro")
     public void invalidSearch() {
-
         assertAll(
             () -> assertThrows(IllegalArgumentException.class, () -> bookController.findByTitle("J")),
             () -> assertThrows(IllegalArgumentException.class, () -> bookController.findByTitle("NodeJS"))

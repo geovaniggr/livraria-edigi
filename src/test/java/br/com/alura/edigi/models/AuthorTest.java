@@ -11,7 +11,7 @@ import br.com.alura.edigi.model.Author;
 public class AuthorTest {
 
     @Test
-    @DisplayName("Autor com dados vazios ou nulos não deve ser criado")
+    @DisplayName("Autor com dados inválidos não deve ser criado")
     public void nullNameForAuthor() {
         assertAll(
             () -> assertThrows(IllegalArgumentException.class, () -> new Author(null, "geovani@alura.com.br"), "Autor com nome nulo foi criado"),
