@@ -13,7 +13,7 @@ public class AuthorRepositoryTest {
     private AuthorRepository authorRepository = new AuthorRepository();
 
     @Test
-    @DisplayName("Autor não existente deve ser cadastrado sem falso negativo")
+    @DisplayName("Autor não existente deve ser cadastrado")
     public void addAuthorToDatabase() {
         Author author = new Author("Geovani", "geovani@alura.com.br");
         this.authorRepository.save(author);
