@@ -1,54 +1,35 @@
 package br.com.alura.edigi.models;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import br.com.alura.edigi.model.Author;
 
 public class AuthorTest {
 
-    public static void main(String[] args) {
+    @Test
+    @DisplayName("Autor com dados inválidos não deve ser criado")
+    public void nullNameForAuthor() {
+        assertAll(
+            () -> assertThrows(IllegalArgumentException.class, () -> new Author(null, "geovani@alura.com.br"), "Autor com nome nulo foi criado"),
+            () -> assertThrows( IllegalArgumentException.class, () -> new Author("", "geovani@alura.com.br"), "Autor com nome vazio foi criado"),
+            () -> assertThrows( IllegalArgumentException.class, () -> new Author("Geovani", null), "Autor com email nulo foi criado"),
+            () -> assertThrows( IllegalArgumentException.class, () -> new Author("Geovani", ""), "Autor com email vazio foi criado")
+        );
+    }
+    
+    @Test()
+    @DisplayName("Autor com email invalido não deve ser criado")
+    public void invalidEmailForAuthor(){
+        assertThrows( IllegalArgumentException.class, () -> new Author("Geovani", "geovanigranieri"));
+    }
 
-        try {
-            System.out.println("Testando a exceção de nome nulo para autor");
-            new Author(null, "");
-        } catch( IllegalArgumentException error){
-            System.out.println(error.getMessage() + "\n");
-        }
-
-        try {
-            System.out.println("Testando a exceção de email nulo para autor");
-            new Author("Geovani", null);
-            
-        } catch( IllegalArgumentException error){
-            System.out.println(error.getMessage() + "\n");
-        }
-
-        try {
-            System.out.println("Testando exceção de nome vazio");
-            new Author("", "");
-
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage() + "\n");
-        }
-
-        try {
-            System.out.println("Testando exceção de email vazio");
-            new Author("Geovani", "");
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage() + "\n");
-        }
-
-        try {
-            System.out.println("Testando exceção de email com formato invalido");
-            new Author("Geovani", "geovanigranieri");
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage() + "\n");
-        }
-
-        try {
-            System.out.println("Testando se a RegEx não da um falso negativo");
-            Author author4 = new Author("Geovani", "geovani.geovani@gmail.com");
-            System.out.println(author4);
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-        }
+    @Test()
+    @DisplayName("Autor com dados validos deve ser criado sem falso-negativo")
+    public void validInputForAuthor(){
+        new Author("Geovani", "geovani.geovani@gmail.com");
     }
 }

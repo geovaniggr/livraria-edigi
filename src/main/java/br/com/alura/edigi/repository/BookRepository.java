@@ -1,19 +1,20 @@
 package br.com.alura.edigi.repository;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import br.com.alura.edigi.model.Book;
 
 public class BookRepository {
-   private static Set<Book> books = new HashSet<>();
+   private static List<Book> books = new ArrayList<>();
 
    public void save(Book book){
-       if( !(BookRepository.books.add(book)))
+        if(BookRepository.books.contains(book))
            throw new IllegalArgumentException("Já existe livro cadastrado com esse título");
+
+        BookRepository.books.add(book);
    }
 
    public Optional<List<Book>> findByTitle(String title){
@@ -26,5 +27,5 @@ public class BookRepository {
             ? Optional.ofNullable(null) 
             : Optional.ofNullable(filteredBooks);
    }
-
+   
 }
