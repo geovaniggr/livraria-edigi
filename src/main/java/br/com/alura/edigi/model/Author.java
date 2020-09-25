@@ -14,6 +14,12 @@ public class Author {
         this.createdAt = LocalDateTime.now();
     }
 
+    public Author(String name, String email, LocalDateTime createdAt) {
+        setName(name);
+        setEmail(email);
+        this.createdAt = createdAt;
+    }
+
     private void setName(String name){
         if( name == null || name.isEmpty()) 
             throw new IllegalArgumentException("O nome não pode ser vazio!");
@@ -56,4 +62,12 @@ public class Author {
         Author comparado = (Author) obj;
         return this.email.equals(comparado.email);
    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }

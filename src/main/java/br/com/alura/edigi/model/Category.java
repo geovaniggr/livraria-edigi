@@ -12,6 +12,11 @@ public class Category {
        this.createdAt = LocalDateTime.now();
     }
 
+    public Category(String name, LocalDateTime createdAt) {
+        setName(name);
+        this.createdAt = createdAt;
+    }
+
     private void setName(String name) {
         if(name == null || name.isEmpty())
             throw new IllegalArgumentException("O nome da categoria não pode ser vazio");
@@ -23,7 +28,11 @@ public class Category {
         return name;
     }
 
-	@Override
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

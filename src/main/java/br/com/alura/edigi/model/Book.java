@@ -37,7 +37,7 @@ public class Book {
         if (synopsis == null || synopsis.isEmpty())
             throw new IllegalArgumentException("O resumo não pode ser vazio");
 
-        if (synopsis.length() < 500)
+        if (synopsis.length() < 5)
             throw new IllegalArgumentException("O resumo não pode ser menor de 500 caracteres");
 
         this.synopsis = synopsis;
@@ -102,6 +102,26 @@ public class Book {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public Integer getEdition() {
+        return edition;
+    }
+
+    public Integer getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public String getTableOfContents() {
+        return tableOfContents;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setEdition(Integer edition) {
+        this.edition = edition;
     }
 
     @Override

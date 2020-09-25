@@ -18,7 +18,7 @@ public class Cart {
     }
 
     public void addItem(Book book) {
-        if (bookRepository.findByTitle(book.getTitle()).isEmpty())
+        if (!bookRepository.existsByTitle(book.getTitle()))
             throw new RuntimeException("O livro não está em nossa base de dados");
 
         this.items.put(book, this.items.getOrDefault(book, 0) + 1);
