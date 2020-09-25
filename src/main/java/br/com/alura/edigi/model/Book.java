@@ -37,7 +37,7 @@ public class Book {
         if (synopsis == null || synopsis.isEmpty())
             throw new IllegalArgumentException("O resumo não pode ser vazio");
 
-        if (synopsis.length() < 5)
+        if (synopsis.length() < 500)
             throw new IllegalArgumentException("O resumo não pode ser menor de 500 caracteres");
 
         this.synopsis = synopsis;
