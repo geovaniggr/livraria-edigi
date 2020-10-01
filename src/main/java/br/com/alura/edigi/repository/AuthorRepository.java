@@ -2,6 +2,7 @@ package br.com.alura.edigi.repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 import br.com.alura.edigi.model.Author;
@@ -37,11 +38,19 @@ public class AuthorRepository {
                 VALUES (?, ?) 
         """;
 
-        try (var statement = connection.prepareStatement(sql)){
+        try (var statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             statement.setString(1, author.getName());
             statement.setString(2, author.getEmail());
 
-            return !statement.execute();
+            var response = statement.execute();
+
+            var returnedKeys = statement.getGeneratedKeys();
+
+            while(returnedKeys.next()){
+                author.setCreatedAt(returnedKeys.getTimestamp("created_at").toLocalDateTime());
+            }
+
+            return !response;
 
         } catch (SQLException exception) {
             exception.printStackTrace();

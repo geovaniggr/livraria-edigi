@@ -2,6 +2,7 @@ package br.com.alura.edigi.repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 import br.com.alura.edigi.model.Category;
@@ -36,11 +37,19 @@ public class CategoryRepository {
                 VALUES (?) 
         """;
 
-        try (var statement = connection.prepareStatement(sql)){
+        try (var statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             statement.setString(1, category.getName());
 
-            return !statement.execute();
+            var response = statement.execute();
+
+            var createdKeys = statement.getGeneratedKeys();
+
+            while(createdKeys.next()){
+                category.setCreatedAt(createdKeys.getTimestamp("created_at").toLocalDateTime());
+            }
+
+            return !response;
 
         } catch (SQLException exception) {
             return false;
