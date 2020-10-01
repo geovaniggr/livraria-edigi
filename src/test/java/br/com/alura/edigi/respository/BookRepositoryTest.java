@@ -31,8 +31,8 @@ public class BookRepositoryTest {
         var conn = ConnectionFactory.getConnection();
         conn.prepareStatement("truncate author cascade").execute();
         conn.prepareStatement("truncate category cascade").execute();
-        conn.prepareStatement("INSERT INTO author (name, email, created_at) VALUES ('geovani', 'geovani@alura.com.br', '2020-09-24 00:00:00')").execute();
-        conn.prepareStatement("INSERT INTO category (name, created_at) VALUES ('Programação', '2020-09-24 00:00:00')").execute();
+        conn.prepareStatement("INSERT INTO author (id, name, email, created_at) VALUES (1, 'geovani', 'geovani@alura.com.br', '2020-09-24 00:00:00')").execute();
+        conn.prepareStatement("INSERT INTO category (id, name, created_at) VALUES (1, 'Programação', '2020-09-24 00:00:00')").execute();
         conn.close();
     }
 
@@ -53,6 +53,9 @@ public class BookRepositoryTest {
         var author = new Author("Geovani", "geovani@alura.com.br");
         var category = new Category("Programação");
 
+        author.setId(1L);
+        category.setId(1L);
+
         Book book = new Book("Java8", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-32334-12-1", new BigDecimal(50), 50, author, category);
         bookRepository.save(book);
     }
@@ -63,6 +66,9 @@ public class BookRepositoryTest {
 
         var author = new Author("Geovani", "geovani@alura.com.br");
         var category = new Category("Programação");
+
+        author.setId(1L);
+        category.setId(1L);
 
         var book = new Book("NodeJS", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-32334-12-7", new BigDecimal(50), 50, author, category);
         var bookWithSameISBN = new Book("Javascript para Backend", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-32334-12-7", new BigDecimal(50), 50, author, category);
@@ -81,6 +87,9 @@ public class BookRepositoryTest {
     public void searchByTitleForExistentBooks(){
         var author = new Author("Geovani", "geovani@alura.com.br");
         var category = new Category("Programação");
+
+        author.setId(1L);
+        category.setId(1L);
 
         var book = new Book("Node: Parte 1", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-32334-12-7", new BigDecimal(50), 50, author, category);
         var secondBook = new Book("Node: Parte 2", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-32334-12-9", new BigDecimal(50), 50, author, category);
@@ -105,6 +114,10 @@ public class BookRepositoryTest {
     public void searchForExistentBook() {
         var author = new Author("Geovani", "geovani@alura.com.br");
         var category = new Category("Programação");
+
+        author.setId(1L);
+        category.setId(1L);
+
         var book = new Book("Node: Parte 1", descriptionGreatherThan500Characters, "1. O que é Java", "978-12-32334-12-7", new BigDecimal(50), 50, author, category);
 
         bookRepository.save(book);
