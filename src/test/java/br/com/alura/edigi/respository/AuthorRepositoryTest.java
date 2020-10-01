@@ -47,7 +47,7 @@ public class AuthorRepositoryTest {
     public void addAlreadyExistsAuthor(){
         var author = new Author("Geovani", "geovani@alura.com.br");
         repository.save(author);
-        assertThrows(IllegalArgumentException.class, () -> repository.save(author));
+        assertFalse(repository.save(author));
     }
 
     @Test

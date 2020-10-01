@@ -71,8 +71,8 @@ public class BookRepositoryTest {
         bookRepository.save(book);
 
         assertAll(
-            () -> assertThrows(IllegalArgumentException.class, () -> bookRepository.save(bookWithSameISBN), "Livro com ISBN repetido foi cadastrado"),
-            () -> assertThrows(IllegalArgumentException.class, () -> bookRepository.save(bookWithSameTitle), "Livro com titulo repetido foi cadastrado")
+            () -> assertFalse( bookRepository.save(bookWithSameISBN), "Livro com ISBN repetido foi cadastrado"),
+            () -> assertFalse( bookRepository.save(bookWithSameTitle), "Livro com titulo repetido foi cadastrado")
         );
     }
 

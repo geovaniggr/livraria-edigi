@@ -49,7 +49,7 @@ public class CategoryRepositoryTest {
     public void addRepeatedCategory() {
         var category = new Category("Java");
         repository.save(category);
-        assertThrows(IllegalArgumentException.class, () -> repository.save(category));
+        assertFalse(repository.save(category));
     }
 
     @Test
