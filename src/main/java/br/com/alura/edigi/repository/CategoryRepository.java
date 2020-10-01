@@ -43,10 +43,11 @@ public class CategoryRepository {
 
             var response = statement.execute();
 
-            var createdKeys = statement.getGeneratedKeys();
+            var returnedKeys = statement.getGeneratedKeys();
 
-            while(createdKeys.next()){
-                category.setCreatedAt(createdKeys.getTimestamp("created_at").toLocalDateTime());
+            while(returnedKeys.next()){
+                category.setId(returnedKeys.getLong("id"));
+                category.setCreatedAt(returnedKeys.getTimestamp("created_at").toLocalDateTime());
             }
 
             return !response;

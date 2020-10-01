@@ -47,6 +47,7 @@ public class AuthorRepository {
             var returnedKeys = statement.getGeneratedKeys();
 
             while(returnedKeys.next()){
+                author.setId(returnedKeys.getLong("id"));
                 author.setCreatedAt(returnedKeys.getTimestamp("created_at").toLocalDateTime());
             }
 
