@@ -2,6 +2,7 @@ package br.com.alura.edigi.repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import br.com.alura.edigi.model.Category;
 
@@ -31,19 +32,18 @@ public class CategoryRepository {
 
     public boolean save(Category category){
         var sql = """
-                INSERT INTO category(name, created_at) 
-                VALUES (?, ?) 
+                INSERT INTO category(name) 
+                VALUES (?) 
         """;
 
         try (var statement = connection.prepareStatement(sql)){
 
             statement.setString(1, category.getName());
-            statement.setObject(2, category.getCreatedAt());
 
             return !statement.execute();
 
         } catch (SQLException exception) {
-            throw new IllegalArgumentException("Houve um erro!. Provavelmente já existe categoria com esse nome cadastrada");
+            return false;
         }
     }
 }

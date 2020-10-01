@@ -2,6 +2,7 @@ package br.com.alura.edigi.repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import br.com.alura.edigi.model.Author;
 
@@ -32,21 +33,19 @@ public class AuthorRepository {
 
     public boolean save(Author author){
         var sql = """
-                INSERT INTO author(name, email, created_at) 
-                VALUES (?, ?, ?) 
+                INSERT INTO author(name, email) 
+                VALUES (?, ?) 
         """;
 
         try (var statement = connection.prepareStatement(sql)){
-
             statement.setString(1, author.getName());
             statement.setString(2, author.getEmail());
-            statement.setObject(3,author.getCreatedAt());
 
             return !statement.execute();
 
         } catch (SQLException exception) {
             exception.printStackTrace();
-            throw new IllegalArgumentException("Houve um erro! Provávelmente este email já esta cadastrado");
+            return false;
         }
     }
 }

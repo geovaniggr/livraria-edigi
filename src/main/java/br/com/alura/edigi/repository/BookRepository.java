@@ -39,7 +39,9 @@ public class BookRepository {
            var response = queryStatement.execute();
             return !response;
        } catch (SQLException exception) {
-           throw new IllegalArgumentException("Houve um erro!. Já existe livro cadastrado com esse ISBN ou titulo");
+           exception.printStackTrace();
+
+           return false;
        }
    }
 
@@ -71,8 +73,8 @@ public class BookRepository {
                        result.getString("isbn"),
                        result.getBigDecimal("price"),
                        result.getInt("number_of_pages"),
-                       new Author(result.getString("author__name"), result.getString("author__email"), result.getObject("author__createdat", LocalDateTime.class)),
-                       new Category(result.getString("category__name"), result.getObject("category__createdat", LocalDateTime.class))
+                       new Author(result.getString("author__name"), result.getString("author__email"), result.getTimestamp("author__createdat").toLocalDateTime()),
+                       new Category(result.getString("category__name"), result.getTimestamp("category__createdat").toLocalDateTime())
                );
                book.setEdition(result.getInt("edition"));
                resultList.add(book);
