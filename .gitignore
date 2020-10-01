@@ -1,1 +1,6 @@
 target
+src/main/resources/database.properties
+edigi.iml
+.vscode
+.settings
+.idea

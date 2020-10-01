@@ -20,7 +20,7 @@ public class AuthorTest {
             () -> assertThrows( IllegalArgumentException.class, () -> new Author("Geovani", ""), "Autor com email vazio foi criado")
         );
     }
-    
+
     @Test()
     @DisplayName("Autor com email invalido não deve ser criado")
     public void invalidEmailForAuthor(){

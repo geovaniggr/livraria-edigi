@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Author {
 
+    private Long id;
     private LocalDateTime createdAt;
     private String email;
     private String name;
@@ -11,7 +12,13 @@ public class Author {
     public Author(String name, String email) {
         setName(name);
         setEmail(email);
-        this.createdAt = LocalDateTime.now();
+    }
+
+    public Author(Long id, String name, String email, LocalDateTime createdAt) {
+        this.id = id;
+        setName(name);
+        setEmail(email);
+        this.createdAt = createdAt;
     }
 
     private void setName(String name){
@@ -56,4 +63,24 @@ public class Author {
         Author comparado = (Author) obj;
         return this.email.equals(comparado.email);
    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
