@@ -11,7 +11,6 @@ public class Author {
     public Author(String name, String email) {
         setName(name);
         setEmail(email);
-        this.createdAt = LocalDateTime.now();
     }
 
     public Author(String name, String email, LocalDateTime createdAt) {

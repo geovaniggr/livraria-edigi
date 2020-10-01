@@ -9,7 +9,6 @@ public class Category {
 
     public Category(String name) {
        setName(name); 
-       this.createdAt = LocalDateTime.now();
     }
 
     public Category(String name, LocalDateTime createdAt) {

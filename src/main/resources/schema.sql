@@ -3,12 +3,12 @@ CREATE DATABASE edigi;
 CREATE TABLE author (
     name varchar(150) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
-    created_at timestamp NOT NULL
+    created_at timestamp NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE category (
   name varchar(150) NOT NULL UNIQUE,
-  created_at timestamp NOT NULL
+  created_at timestamp NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE book (
