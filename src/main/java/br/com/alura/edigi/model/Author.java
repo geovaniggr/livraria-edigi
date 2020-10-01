@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Author {
 
+    private Long id;
     private LocalDateTime createdAt;
     private String email;
     private String name;
@@ -13,7 +14,8 @@ public class Author {
         setEmail(email);
     }
 
-    public Author(String name, String email, LocalDateTime createdAt) {
+    public Author(Long id, String name, String email, LocalDateTime createdAt) {
+        this.id = id;
         setName(name);
         setEmail(email);
         this.createdAt = createdAt;
@@ -72,5 +74,13 @@ public class Author {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

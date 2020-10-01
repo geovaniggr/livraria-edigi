@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Category {
 
+    private Long id;
     private String name;
     private LocalDateTime createdAt;
 
@@ -11,7 +12,8 @@ public class Category {
        setName(name); 
     }
 
-    public Category(String name, LocalDateTime createdAt) {
+    public Category(Long id, String name, LocalDateTime createdAt) {
+        this.id = id;
         setName(name);
         this.createdAt = createdAt;
     }
@@ -33,6 +35,14 @@ public class Category {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

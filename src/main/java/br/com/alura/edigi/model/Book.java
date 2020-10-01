@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Book {
 
+    private Long id;
     private String title;
     private String synopsis;
     private String tableOfContents;
@@ -122,6 +123,14 @@ public class Book {
 
     public void setEdition(Integer edition) {
         this.edition = edition;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
